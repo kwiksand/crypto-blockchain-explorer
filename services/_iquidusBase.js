@@ -1,26 +1,19 @@
 let BaseService = require('./_base')
 let util = require('util')
 
-class CryptoidBaseService extends BaseService {
+class IquidusBaseService extends BaseService {
 
-    constructor(symbol) {
+    constructor() {
         super()
 
         //TODO - remove these once the exchanges are getting their fees on launch
-        this._blockExplorerUrl = "https://chainz.cryptoid.info/#SYMBOL#/api.dws"
-        this._addressUrl = "?q=getbalance&a=#ADDRESS#"
-
-        if (symbol) {
-            this._symbol = symbol
-        } else {
-            this._symbol = OVERRIDDEN
-        }
+        this._blockExplorerUrl = "iquidus_url"
+        this._addressUrl = "/ext/getaddress/#ADDRESS#"
 
     }
 
     getWalletAddress(address, callback) {
         let url = `${this._blockExplorerUrl}${this._addressUrl}`
-        url = url.replace("#SYMBOL#", this._symbol.toLowerCase())
         url = url.replace("#ADDRESS#", address)
 
         let headers, params = ""
@@ -42,4 +35,4 @@ class CryptoidBaseService extends BaseService {
         })
     }
 }
-module.exports = CryptoidBaseService
+module.exports = IquidusBaseService
