@@ -13,7 +13,7 @@ class CryptoidBaseService extends BaseService {
         if (symbol) {
             this._symbol = symbol
         } else {
-            this._symbol = OVERRIDDEN
+            this._symbol = "OVERRIDDEN"
         }
 
     }

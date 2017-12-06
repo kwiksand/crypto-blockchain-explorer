@@ -3,7 +3,8 @@ var verbose = false
 const Bitcoin = require('./services/Bitcoin')
 const Dash = require('./services/Dash')
 const EthereumClassic = require('./services/EthereumClassic')
-const Litecoin = require('./services/Litecoin')
+const Syndicate = require('./services/Syndicate')
+
 const CryptoidBaseService = require('./services/_cryptoidBase')
 //const Ethereum = require('./services/Ethereum')
 
@@ -17,6 +18,7 @@ var util = require("util"),
 var CryptocurrencyExplorer = function CryptocurrencyExplorer(currency)
 {
     switch (currency.toUpperCase()) {
+        // Single coins
         case "BITCOIN":
         case "BTC":
             return new Bitcoin()
@@ -26,10 +28,6 @@ var CryptocurrencyExplorer = function CryptocurrencyExplorer(currency)
         case "ETC":
         case "Ethereum Classic":
             return new EthereumClassic()
-            break
-        case "LITECOIN":
-        case "LTC":
-            return new Litecoin()
             break
         case "SYNDICATE":
         case "SYNX":
