@@ -30,11 +30,11 @@ var CryptocurrencyExplorer = function CryptocurrencyExplorer(currency)
         case "LITECOIN":
         case "LTC":
             return new Litecoin()
-        case "PIVX":
-            return new CryptoidBaseService(symbol) 
+            break
         case "SYNDICATE":
         case "SYNX":
             return new Syndicate()
+            break
 
         // Cryptoid Coins
         case "1337":
@@ -537,7 +537,8 @@ var CryptocurrencyExplorer = function CryptocurrencyExplorer(currency)
         case "ZETACOIN":
         case "ZOI":
         case "ZOIN":
-
+            return new CryptoidBaseService(symbol) 
+            break
 
         default:
             throw new Error("Currency (" + currency + ") not known and/or not implemented yet")
