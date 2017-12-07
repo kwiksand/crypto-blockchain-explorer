@@ -31,7 +31,7 @@ class IquidusBaseService extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': address, 'balance': response })
+            callback(null, { 'address': address, 'balance': response.balance })
         })
     }
 }
