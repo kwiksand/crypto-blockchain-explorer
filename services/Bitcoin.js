@@ -6,7 +6,6 @@ class Bitcoin extends BaseService {
     constructor() {
         super()
 
-        //TODO - remove these once the exchanges are getting their fees on launch
         this._blockExplorerUrl = "https://blockexplorer.com/api/"
         this._addressUrl = "addr/#ADDRESS#"
 
@@ -31,7 +30,7 @@ class Bitcoin extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'noTransactions': response.transactions.length })
+            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'noTransactions': parseInt(response.transactions.length) > 0 ? parseInt(response.transactions.length) : 0 })
         })
     }
 }

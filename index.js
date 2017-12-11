@@ -535,7 +535,7 @@ var CryptocurrencyExplorer = function CryptocurrencyExplorer(currency)
         case "ZETACOIN":
         case "ZOI":
         case "ZOIN":
-            return new CryptoidBaseService(symbol) 
+            return new CryptoidBaseService(currency.toUpperCase())
             break
 
         default:
