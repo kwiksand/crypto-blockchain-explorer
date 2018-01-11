@@ -31,7 +31,11 @@ class Bitcoin extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'metaData': { 'noTransactions': parseInt(response.transactions.length) > 0 ? parseInt(response.transactions.length) : 0 } })
+            let noTransactions = 0
+            if (response.transactions.isArray()) {
+                noTransactions = response.transactions.length
+            }
+            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'metaData': { 'noTransactions': noTransactions } })
         })
     }
 }
