@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/kwiksand/crypto-blockchain-explorer#readme",
   "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
     "request": "^2.83.0",
     "underscore": "^1.8.3"
   }

@@ -15,6 +15,7 @@ class EthereumClassic extends BaseService {
     getWalletAddress(address, callback) {
         let url = `${this._blockExplorerUrl}${this._addressUrl}`
         url = url.replace("#ADDRESS#", address)
+        console.log("URL is: " + url)
 
         let headers, params = ""
 
@@ -31,7 +32,7 @@ class EthereumClassic extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': response.address, 'balance': response.balance.ether })
+            callback(null, { 'address': response.address, 'balance': response.balance.ether, 'metaData': { 'gwei': 0 } })
         })
     }
 }

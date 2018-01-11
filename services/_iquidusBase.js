@@ -31,7 +31,26 @@ class IquidusBaseService extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': address, 'balance': response.balance })
+            if (err) {
+                console.log('Foudn Err')
+                return callback(err)
+            }
+            if ('error' in response) {
+                //console.log('Found Error in response')
+                console.log(JSON.stringify(Object.prototype.toString(this)))
+                console.log(JSON.stringify(this, null, 4))
+                return callback(`Error: ${response.error}`)
+            }
+            if (response == null) {
+                //console.log('Response was null')
+                return callback(`Error: Response object was null for ${this.constructor.name}`)
+            }
+            if (!('balance' in response)) {
+                console.log('No balance in response')
+                return callback('Balance not found')
+
+            }
+            callback(null, { 'address': address, 'balance': response.balance, 'metaData': {} })
         })
     }
 }

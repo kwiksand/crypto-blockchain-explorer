@@ -8,7 +8,7 @@ class CryptoidBaseService extends BaseService {
 
         //TODO - remove these once the exchanges are getting their fees on launch
         this._blockExplorerUrl = "https://chainz.cryptoid.info/#SYMBOL#/api.dws"
-        this._addressUrl = "?q=getbalance&a=#ADDRESS#"
+        this._addressUrl = "?q=getbalance&a=#ADDRESS#&key=a534dfa7cc06"
 
         if (symbol) {
             this._symbol = symbol
@@ -22,6 +22,7 @@ class CryptoidBaseService extends BaseService {
         let url = `${this._blockExplorerUrl}${this._addressUrl}`
         url = url.replace("#SYMBOL#", this._symbol.toLowerCase())
         url = url.replace("#ADDRESS#", address)
+        console.log("URL is: " + url)
 
         let headers, params = ""
 
@@ -38,7 +39,15 @@ class CryptoidBaseService extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': address, 'balance': response })
+            if (response == null) {
+                console.log(options)
+                callback('An error occured with request')
+            }
+            /*if (!('balance' in response)) {
+                console.log(response)
+                callback('Balance not found')
+            }*/
+            callback(null, { 'address': address, 'balance': response, 'metaData': {} })
         })
     }
 }

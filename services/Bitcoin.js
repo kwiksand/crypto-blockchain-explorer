@@ -14,6 +14,7 @@ class Bitcoin extends BaseService {
     getWalletAddress(address, callback) {
         let url = `${this._blockExplorerUrl}${this._addressUrl}`
         url = url.replace("#ADDRESS#", address)
+        console.log("URL is: " + url)
 
         let headers, params = ""
 
@@ -30,7 +31,7 @@ class Bitcoin extends BaseService {
             options.method, options.url, JSON.stringify(params))
 
         this.executeRequest(options, requestDesc, function(err, response) {
-            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'noTransactions': parseInt(response.transactions.length) > 0 ? parseInt(response.transactions.length) : 0 })
+            callback(null, { 'address': response.addrStr, 'balance': response.balance, 'metaData': { 'noTransactions': parseInt(response.transactions.length) > 0 ? parseInt(response.transactions.length) : 0 } })
         })
     }
 }

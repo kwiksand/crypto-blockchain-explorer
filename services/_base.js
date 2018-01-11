@@ -10,7 +10,7 @@ class BaseService {
     }
 
     executeRequest(options, requestDesc, callback) {
-        var functionName = "Cryptopia.executeRequest()"
+        var functionName = "executeRequest()"
 
         request(options, function(err, response, data)
         {
@@ -55,10 +55,6 @@ class BaseService {
     
             callback(error, returnObject)
         })
-    }
-
-    getOrderBook(pair, callback) {
-        this.cryptox.getOrderBook({pair: pair}, callback)
     }
 }
 module.exports = BaseService
